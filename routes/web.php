@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/Home', function (){
+    return view('Home');
+});
 // Authentication
 Route::get('/', function () {return view('Authentication');});
 Route::post('/register', [UserController::class, 'register']);
@@ -34,19 +36,25 @@ Route::get('/receipt', function () {
         'rtp' => $receiptDATA
     ]);
 });
-Route::post('/receipt', function (){
-    $searchQuery = '%' . request('search') . '%';
-    $receiptDATA = Receipt::where('title', 'like', $searchQuery)->get();
-    $categoryDATA = Category::all();
-    return view('Receipt', [
-        'ctg' => $categoryDATA,
-        'rtp' => $receiptDATA
-    ]);
-});
 Route::post('/addReceipt', [ReceiptController::class, 'addReceipt']);
 Route::get('/editReceipt/{receipt}', [ReceiptController::class, 'editReceipt']);
 Route::put('/editReceipt/{receipt}', [ReceiptController::class, 'actuallyEditReceipt']);
 Route::delete('/deleteReceipt/{receipt}', [ReceiptController::class, 'deleteReceipt']);
+
+
+Route::get('/SearchReceipt', function (){
+    return view('Search', [
+        'rtp' => []
+    ]);
+});
+Route::post('/SearchReceipt', function (){
+    $searchQuery = '%' . request('search') . '%';
+    $receiptDATA = Receipt::where('title', 'like', $searchQuery)->get();
+
+    return view('Search', [
+        'rtp' => $receiptDATA
+    ]);
+});
 
 
 // Category

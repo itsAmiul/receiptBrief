@@ -37,11 +37,7 @@
     <div class="w-full h-auto mt-16" >
         <h1 class="text-xl font-[800]" >Category List</h1>
 
-        <form action="/receipt" method="POST">
-            @csrf
-            <input type="search" placeholder="Search Receipts" class="px-4 py-2 rounded border-[1px] border-gray-600 outline-none">
-            <button type="submit" class="bg-gray-600 text-white rounded py-2 font-[600] border-[1px] border-gray-600 hover:bg-gray-600/80 px-8 " >Search A Receipt</button>
-        </form>
+
         <div class="flex flex-wrap mt-4 mb-16 gap-x-8 gap-y-2" >
             @foreach($rtp as $receipt)
                 <div class="bg-gray-300 border-[2px] border-gray-600 rounded py-4 px-[20px] w-[30%]" >
