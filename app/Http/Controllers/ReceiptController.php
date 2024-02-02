@@ -21,8 +21,8 @@ class ReceiptController extends Controller
         if ($request->hasFile('picture')) {
             $file = $request->file('picture');
             $pictureName = 'img-' . time() . '.' . $file->extension();
-            $destinationPath = 'uploads';
-            $file->move($destinationPath, $pictureName);
+            // $file->storeAs('uploads', $pictureName);
+            $file->move('uploads', $pictureName);
             $incomingDATA['picture'] = $pictureName;
         }
 
